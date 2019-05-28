@@ -42,5 +42,17 @@ def describe_df(df):
     
     return df.describe()
 
-def generate_plt():
+def generate_hist(df, var, x_name, y_name, title):
+    import plotly.plotly as py 
+    import plotly.graph_objs as go
+    from plotly.offline import plot, iplot, init_notebook_mode
+    # Using plotly + cufflinks in offline mode
+    import cufflinks
+    cufflinks.go_offline(connected=True)
+    init_notebook_mode(connected=True)
     
+    #df[var].plot(kind='hist', xTitle=x_name, yTitle=y_name, title=title)
+    plotly.offline.plot({
+    "data": [go.Histogram(y=df[var])],
+    "layout": go.Layout(title=title)
+}, auto_open=True)

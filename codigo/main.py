@@ -20,4 +20,11 @@ if __name__ == '__main__':
     desc = utils.describe_df(df)
     print('Desc: \n', desc)
     
+    var = input('Informe a variavel para ser plotada: ')
+    x_name = input('Titulo do X: ')
+    y_name = input('Titulo do Y: ')
+    title = input('Titulo do Grafico: ')
+    utils.generate_hist(df, var, x_name, y_name, title)
+    
+    input('Esperando por tecla...')
     print('Finalizando execucao do programa')
