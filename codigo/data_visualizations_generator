@@ -51,8 +51,10 @@ plt.show()
 # Análise do McDonlad's 
 # https://www.kaggle.com/mcdonalds/nutrition-facts/
 df_mc_menu = pd.read_csv('/Users/gabrielcaschera/Downloads/menu_mc.csv')
-plt_hist_mc_menu = sns.distplot(df_mc_menu['Calories'], kde=False, rug=False, color = 'darkcyan')
+target_column = 'Calories'
+plt_hist_mc_menu = sns.distplot(df_mc_menu[target_column], kde=False, rug=False, color = 'darkcyan')
 sns_plot_fig = plt_hist_mc_menu.get_figure()
 sns_plot_fig.set_size_inches(14.7, 14.27)
-sns_plot_fig.savefig('/Users/gabrielcaschera/Documents/TCC/visualizacoes/calories_dist_mc.png')
+sns_plot_fig.savefig('/Users/gabrielcaschera/Documents/TCC/visualizacoes/'+target_column+'.png')
 plt.show()
+print('Mean: '+str(df_mc_menu[target_column].mean())+' -- Median: '+str(df_mc_menu[target_column].median()))
