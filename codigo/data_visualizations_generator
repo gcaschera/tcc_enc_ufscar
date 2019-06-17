@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Jun 15 18:29:44 2019
+
+@author: gabrielcaschera
+"""
+
+import pandas as pd 
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Importação do dataset 
+df_nba = pd.read_csv('/Users/gabrielcaschera/Downloads/all_seasons.csv')
+df_nba_16 = df_nba[df_nba.season=='2016-17'][df_nba.age>30]
+
+# Plot do gráfico de dispersão 
+plt2 = sns.scatterplot(x="player_height", y="player_weight", data=df_nba_16)
+
+# Plot do box plot das varíaveis 
+for column in df_nba.columns:
+    print(column)
+    if(column in ('age', 'player_height', 'player_weight', 'gp', 'pts', 'reb', 'ast', 'net_rating')):
+        plt2 = sns.boxplot(y=df_nba[column])
+        plt.show()
+        
+sns_plot = sns.boxplot(y=df_nba['age'], x=df_nba['season'], width=0.5)
+sns.despine()
+sns_plot.set_xticklabels(rotation=30, labels=df_nba['season'].unique())
+sns_plot_fig = sns_plot.get_figure()
+sns_plot_fig.set_size_inches(11.7, 8.27)
+sns_plot_fig.savefig('/Users/gabrielcaschera/Documents/TCC/visualizacoes/box_plot_age.png')
+plt.show()
+
+# Matriz de correlação 
+corr = df_nba_16.corr()
+sns.heatmap(corr, 
+        xticklabels=corr.columns,
+        yticklabels=corr.columns)
+
+# Análise do Starbucks 
+df_star_menu = pd.read_csv('/Users/gabrielcaschera/Downloads/starbucks_drinkMenu_expanded.csv')
+df_star_menu_avg = df_star_menu.loc[:,['Beverage_category', 'Calories']].groupby(['Beverage_category']).mean().reset_index()
+plt_hist_star_menu = sns.barplot(x = df_star_menu_avg['Beverage_category'], y = df_star_menu_avg['Calories'], palette=sns.color_palette("GnBu_d"))
+plt_hist_star_menu.set_xticklabels(rotation=30, labels=df_star_menu_avg['Beverage_category'].unique())
+sns_plot_fig = plt_hist_star_menu.get_figure()
+sns_plot_fig.set_size_inches(14.7, 14.27)
+sns_plot_fig.savefig('/Users/gabrielcaschera/Documents/TCC/visualizacoes/calories_beverage.png')
+plt.show()
+
+# Análise do McDonlad's 
+# https://www.kaggle.com/mcdonalds/nutrition-facts/
+df_mc_menu = pd.read_csv('/Users/gabrielcaschera/Downloads/menu_mc.csv')
+plt_hist_mc_menu = sns.distplot(df_mc_menu['Calories'], kde=False, rug=False, color = 'darkcyan')
+sns_plot_fig = plt_hist_mc_menu.get_figure()
+sns_plot_fig.set_size_inches(14.7, 14.27)
+sns_plot_fig.savefig('/Users/gabrielcaschera/Documents/TCC/visualizacoes/calories_dist_mc.png')
+plt.show()
