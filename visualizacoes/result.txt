@@ -1,0 +1,45 @@
+Sodium.png
+result.txt
+calories_dist_mc.png
+Protein.png
+Sugars.png
+Cholesterol.png
+plt_us_educ.png
+df_nyse_comp.png
+Carbohydrates.png
+df_nyse_amzn.png
+box_plot_explanation.png
+Calories.png
+Dietary Fiber.png
+box_plot_age.png
+calories_beverage.png
+Sodium.png
+result.txt
+calories_dist_mc.png
+Protein.png
+Sugars.png
+Cholesterol.png
+plt_us_educ.png
+df_nyse_comp.png
+Carbohydrates.png
+df_nyse_amzn.png
+box_plot_explanation.png
+Calories.png
+Dietary Fiber.png
+box_plot_age.png
+calories_beverage.png
+Sodium
+result.txt
+calories_dist_mc
+Protein
+Sugars
+Cholesterol
+plt_us_educ
+df_nyse_comp
+Carbohydrates
+df_nyse_amzn
+box_plot_explanation
+Calories
+Dietary Fiber
+box_plot_age
+calories_beverage
