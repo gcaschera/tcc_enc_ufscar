@@ -58,3 +58,17 @@ sns_plot_fig.set_size_inches(14.7, 14.27)
 sns_plot_fig.savefig('/Users/gabrielcaschera/Documents/TCC/visualizacoes/'+target_column+'.png')
 plt.show()
 print('Mean: '+str(df_mc_menu[target_column].mean())+' -- Median: '+str(df_mc_menu[target_column].median()))
+
+# Análise do Mercado de Ações de Nova York
+# https://www.kaggle.com/dgawlik/nyse/downloads/nyse.zip/3
+df_nyse = pd.read_csv('/Users/gabrielcaschera/Downloads/nyse/prices.csv')
+df_nyse_amzn = df_nyse[df_nyse.symbol=='AMZN'][df_nyse.date.str.contains('2016')].reset_index()
+y_column = 'close'
+x_column = 'date'
+plt_hist_nyse = sns.lineplot(x=x_column, y=y_column, data=df_nyse_amzn)
+plt_hist_nyse.set_xticklabels(rotation=90, labels=df_nyse_amzn['date'].unique())
+sns_plot_fig = plt_hist_nyse.get_figure()
+sns_plot_fig.set_size_inches(14.7, 14.27)
+sns_plot_fig.savefig('/Users/gabrielcaschera/Documents/TCC/visualizacoes/df_nyse_amzn.png')
+plt.show()
+print('Mean: '+str(df_mc_menu[target_column].mean())+' -- Median: '+str(df_mc_menu[target_column].median()))
