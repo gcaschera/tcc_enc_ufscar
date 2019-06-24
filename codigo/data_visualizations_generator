@@ -132,10 +132,21 @@ plt.show()
 # Brooklyn houses price sales analysis 
 # https://www.kaggle.com/tianhwu/brooklynhomes2003to2017/
 df_housesBklyn = pd.read_csv('/Users/gabrielcaschera/Downloads/brooklynhomes2003to2017/brooklyn_sales_map.csv')
-df_housesBklyn2017 = df_housesBklyn[df_housesBklyn.year_of_sale == 2017]
+df_housesBklyn2017 = df_housesBklyn[df_housesBklyn.year_of_sale == 2012]
 sns_plot = sns.violinplot(y=df_housesBklyn2017['sale_price'])
 sns.despine()
 sns_plot_fig = sns_plot.get_figure()
 #sns_plot_fig.set_size_inches(14.7, 10.39)
 sns_plot_fig.savefig('/Users/gabrielcaschera/Documents/TCC/visualizacoes/housesBklyn_salesPrice.png')
+plt.show()
+
+# Análise de milimitros de chuva na Australia
+# https://www.kaggle.com/jsphyg/weather-dataset-rattle-package/
+df_rainAUS = pd.read_csv('/Users/gabrielcaschera/Downloads/weatherAUS.csv')
+target_column = 'Rainfall'
+sns_plot = sns.violinplot(y=df_rainAUS[target_column], data = df_rainAUS, palette=sns.color_palette("GnBu_d", n_colors=2))
+sns.despine()
+sns_plot_fig = sns_plot.get_figure()
+#sns_plot_fig.set_size_inches(14.7, 10.39)
+sns_plot_fig.savefig('/Users/gabrielcaschera/Documents/TCC/visualizacoes/rainAUS_'+target_column+'.png')
 plt.show()

@@ -6,53 +6,47 @@ Created on Sat Apr 20 14:18:36 2019
 @author: gabrielcaschera
 """
 
+import tkinter as tk
+from tkinter import filedialog
+import pandas as pd
+
 def read_csv_file():
-    """
+    '''
     
-    Função para leitura do arquivo csv a partir do sistema de arquivos do computador.
+    Funcao para leitura do arquivo csv a partir do sistema de arquivos do computador.
     Retorna o arquivo lido pelo pandas.read_csv
     
-    """
-    
-    import tkinter as tk
-    from tkinter import filedialog
-    import pandas as pd
+    '''
 
     # Leitura do arquivo csv
     root = tk.Tk()
     root.withdraw()
+    root.update()
     file_path = filedialog.askopenfilename() 
     
-    if '.csv' not in file_path:
+    # Caso a extensao do arquivo nao seja csv, e esperada a leitura ate o usuario cancelar
+    while ('.csv' not in file_path) and (file_path):
         print('Favor informar um arquivo .csv. O arquivo ', file_path, ' nao esta nesse formato.')
         file_path = filedialog.askopenfilename() 
         
-    #input('Pressione Enter para Continuar')
-    
-    return pd.read_csv(file_path, sep=';')
-    
+    if not file_path:
+        return None, False
+    else:
+        return pd.read_csv(file_path), True
 
-
-def describe_df(df):
-    """
+def close_program(close_type):
+    '''
     
-    Função que retorna a descrição e as informações do dataset. 
+    Funcao para mensagem de encerramento do programa: retorna string
+    Tipos: 
+        user: Usuario solicitou encerramento
+        error: Erro fatal
+        
+    '''
     
-    """ 
+    closing_answers = {
+            'user': 'Usuario solicitou encerramento. Encerrando...',
+            'error': 'Erro fatal. Encerrando programa.'
+            }
     
-    return df.describe()
-
-def generate_hist(df, var, x_name, y_name, title):
-    import plotly.plotly as py 
-    import plotly.graph_objs as go
-    from plotly.offline import plot, iplot, init_notebook_mode
-    # Using plotly + cufflinks in offline mode
-    import cufflinks
-    cufflinks.go_offline(connected=True)
-    init_notebook_mode(connected=True)
-    
-    #df[var].plot(kind='hist', xTitle=x_name, yTitle=y_name, title=title)
-    plotly.offline.plot({
-    "data": [go.Histogram(y=df[var])],
-    "layout": go.Layout(title=title)
-}, auto_open=True)
+    return closing_answers.get(close_type, 'Encerrando...')
