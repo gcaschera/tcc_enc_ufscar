@@ -15,7 +15,9 @@ from tkinter import messagebox
     
 def create_input_boxes():
     '''
+    
         Funcao que cria as caixas de entrada de texto para input dos parametros pelo usuario 
+        
     '''
     fields = ['target_column_x', 'x_name','target_column_y', 'y_name', 'title', 'hue_column', 'hue_name']
     entries = []
@@ -31,7 +33,9 @@ def create_input_boxes():
             
 def fetch(entries):
     '''
+    
         Funcao que busca os valores dos parametros fornecidos pelo usuario 
+    
     '''
     # Resgata os valores inseridos 
     for entry in entries:
@@ -89,7 +93,9 @@ def fetch(entries):
 
 def instructions():
     '''
+    
         Funcao para mostrar instrucoes de utilizacao da ferramenta 
+    
     '''
     # Define mensagem 
     msg = 'Utilizacao:\ntarget_column_x: coluna plotada em x\ntarget_column_y: coluna plotada em y\n'
@@ -100,8 +106,10 @@ def instructions():
 
 def describe_df(df):
     '''
+    
         Funcao para apresentar a descricao do dataframe numa nova janela 
         A descricao e chamada da ferramenta 
+    
     '''
     # Coleta informacoes atraves da ferramenta 
     desc, head, info = datavis.describe_df(df)
@@ -122,12 +130,15 @@ def describe_df(df):
     
 def cb_update_field(index):
     '''
+    
         Funcao para atualzar o valor do plot_type atrelado ao combobox 
+    
     '''
     fields_values['plot_type'] = combo.get()
     print('Combobox atualizado para: ', combo.get())
 
 if __name__ == '__main__':
+    
     # Mensagem de inicio no log
     print('Ferramenta para Analise de Datasets')
     
