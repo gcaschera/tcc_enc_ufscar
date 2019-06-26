@@ -4,6 +4,8 @@
 Created on Sat Jun 15 18:29:44 2019
 
 @author: gabrielcaschera
+
+Este arquivo tem como objetivo a geracao dos graficos apresentados no texto do trabalho 
 """
 
 import pandas as pd 
@@ -24,7 +26,8 @@ for column in df_nba.columns:
     if(column in ('age', 'player_height', 'player_weight', 'gp', 'pts', 'reb', 'ast', 'net_rating')):
         plt2 = sns.boxplot(y=df_nba[column])
         plt.show()
-        
+    
+# Box plot de idade por temporada da NBA 
 sns_plot = sns.boxplot(y=df_nba['age'], x=df_nba['season'], width=0.5)
 sns.despine()
 sns_plot.set_xticklabels(rotation=30, labels=df_nba['season'].unique())
@@ -64,13 +67,10 @@ print('Mean: '+str(df_mc_menu[target_column].mean())+' -- Median: '+str(df_mc_me
 # https://www.kaggle.com/dgawlik/nyse/downloads/nyse.zip/3
 df_nyse = pd.read_csv('/Users/gabrielcaschera/Downloads/nyse/prices.csv', usecols=['date','close','symbol'], parse_dates=['date'])
 df_nyse_amzn_temp = df_nyse[df_nyse.symbol=='AMZN'][df_nyse.date > '2015-12-31']
-#df_nyse_amzn['date']=pd.to_datetime(df_nyse_amzn['date'], format='%Y-%m-%d')
 df_nyse_amzn = df_nyse_amzn_temp[['date','close']]
 y_column = 'close'
 x_column = 'date'
-#labels = pd.Series([i.strftime('%b %y') for i in df_nyse_amzn[x_column]])
 plt_hist_nyse = sns.lineplot(x=x_column, y=y_column, data=df_nyse_amzn[[x_column, y_column]])
-#plt_hist_nyse.set_xticklabels(labels=labels.unique())
 plt_hist_nyse.set_xticklabels(rotation=90, labels=df_nyse_amzn['date'])
 plt_hist_nyse.xaxis.set_major_locator(mdates.WeekdayLocator())
 plt_hist_nyse.xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))
@@ -83,13 +83,10 @@ plt.show()
 
 # Gráfico 2: comparação de valor de ações 
 df_nyse_comp = df_nyse[(df_nyse.symbol=='AMZN') | (df_nyse.symbol=='GOOGL') | (df_nyse.symbol=='AAPL')][df_nyse.date > '2015-12-31']
-#df_nyse_amzn['date']=pd.to_datetime(df_nyse_amzn['date'], format='%Y-%m-%d')
 y_column = 'close'
 x_column = 'date'
 hue_column = 'symbol'
-#labels = pd.Series([i.strftime('%b %y') for i in df_nyse_amzn[x_column]])
 plt_hist_nyse = sns.lineplot(x=x_column, y=y_column, hue=hue_column, style=hue_column, data=df_nyse_comp, palette=sns.color_palette("GnBu_d", n_colors=3))
-#plt_hist_nyse.set_xticklabels(labels=labels.unique())
 plt_hist_nyse.set_xticklabels(rotation=90, labels=df_nyse_amzn['date'])
 plt_hist_nyse.xaxis.set_major_locator(mdates.WeekdayLocator())
 plt_hist_nyse.xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))
@@ -136,7 +133,6 @@ df_housesBklyn2017 = df_housesBklyn[df_housesBklyn.year_of_sale == 2012]
 sns_plot = sns.violinplot(y=df_housesBklyn2017['sale_price'])
 sns.despine()
 sns_plot_fig = sns_plot.get_figure()
-#sns_plot_fig.set_size_inches(14.7, 10.39)
 sns_plot_fig.savefig('/Users/gabrielcaschera/Documents/TCC/visualizacoes/housesBklyn_salesPrice.png')
 plt.show()
 
@@ -147,6 +143,5 @@ target_column = 'Rainfall'
 sns_plot = sns.violinplot(y=df_rainAUS[target_column], data = df_rainAUS, palette=sns.color_palette("GnBu_d", n_colors=2))
 sns.despine()
 sns_plot_fig = sns_plot.get_figure()
-#sns_plot_fig.set_size_inches(14.7, 10.39)
 sns_plot_fig.savefig('/Users/gabrielcaschera/Documents/TCC/visualizacoes/rainAUS_'+target_column+'.png')
 plt.show()
